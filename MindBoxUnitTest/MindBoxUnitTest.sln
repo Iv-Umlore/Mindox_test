@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MindBoxUnitTest", "MindBoxUnitTest.csproj", "{6852E583-9BC1-4F90-A796-0312489C72B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGeometryLib", "..\SimpleGeometryLib\SimpleGeometryLib.csproj", "{7FA6D37E-790D-4B82-A87E-EF033BA53BC5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6852E583-9BC1-4F90-A796-0312489C72B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6852E583-9BC1-4F90-A796-0312489C72B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6852E583-9BC1-4F90-A796-0312489C72B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FA6D37E-790D-4B82-A87E-EF033BA53BC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FA6D37E-790D-4B82-A87E-EF033BA53BC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FA6D37E-790D-4B82-A87E-EF033BA53BC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FA6D37E-790D-4B82-A87E-EF033BA53BC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
