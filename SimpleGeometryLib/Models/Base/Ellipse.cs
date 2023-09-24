@@ -6,11 +6,18 @@
 
         protected double Radius { get; set; }
 
+        protected double SecondRadius { get; set; }
+
         /// <summary>
-        /// Коэффициент сжатия (отношение длинны к ширине эллипса)
+        /// Коэффициент сжатия (отношение известного радиуса к неизвестному)
         /// </summary>
         protected double CompressionCoefficient { get; private set; }
 
+        /// <summary>
+        /// Конструктор эллипсов
+        /// </summary>
+        /// <param name="compression"> Отношение известного радиуса к неизвестному </param>
+        /// <param name="radius"> Известный радиус </param>
         public Ellipse(double compression, double radius)
         {
             Center = new Point() { X = 0, Y = 0 };
@@ -23,13 +30,13 @@
 
             CompressionCoefficient = compression;
             Radius = radius;
+            SecondRadius = Radius / CompressionCoefficient;
         }
 
         public override double GetArea()
         {
             // Pi * a * b
-            // Считаем что b = a * K, или a = b/K
-            return Math.PI * Math.Pow(Radius, 2) / CompressionCoefficient;
+            return Math.PI * Radius * SecondRadius;
         }
     }
 }
