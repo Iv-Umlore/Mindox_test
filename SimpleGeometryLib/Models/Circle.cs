@@ -2,11 +2,13 @@
 
 namespace SimpleGeometryLib.Models
 {
-    public class Circle : Figure
+    public class Circle : Ellipse
     {
+        public Circle(double radius) :base (1.0, radius) { }
+
         public override double GetArea()
         {
-            throw new NotImplementedException();
+            return base.GetArea();
         }
     }
 }

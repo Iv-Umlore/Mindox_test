@@ -19,6 +19,7 @@ namespace SimpleGeometryLib.Models
             }
             else
             {
+                // Очевидно что данные строки должны быть вынесены в константы, но в рамках тестового решил не делать
                 if (!UpperZeroLength(f.Length, s.Length, t.Length))
                     throw new ArgumentException("Одна или несколько из сторон меньше или равны 0.0");
                 throw new ArgumentException("Сумма сторон треугольника не удовлетворяет основному правилу (сумма любых двух сторон больше третьей)");
@@ -43,6 +44,7 @@ namespace SimpleGeometryLib.Models
             }
             else
             {
+                // Очевидно что данные строки должны быть вынесены в константы, но в рамках тестового решил не делать
                 if (!UpperZeroLength(first.Length, second.Length, third.Length))
                     throw new ArgumentException("Одна из сторон равна 0");
                 throw new ArgumentException("Сумма сторон треугольника не удовлетворяет основному правилу (сумма любых двух сторон больше третьей)");
