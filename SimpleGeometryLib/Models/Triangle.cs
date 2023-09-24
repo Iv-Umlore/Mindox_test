@@ -9,18 +9,18 @@ namespace SimpleGeometryLib.Models
         protected List<Edge> _edgesList = null;
 
         public Triangle(Edge f, Edge s, Edge t) {
-            if ( NotZeroLength(f.Length, s.Length, t.Length) &&
+            if ( UpperZeroLength(f.Length, s.Length, t.Length) &&
                 IsSideSmaller(f.Length, s.Length, t.Length) &&
-                IsSideSmaller(f.Length, s.Length, t.Length) &&
-                IsSideSmaller(f.Length, s.Length, t.Length)
+                IsSideSmaller(t.Length, s.Length, f.Length) &&
+                IsSideSmaller(f.Length, t.Length, s.Length)
                 )
             {
                 _edgesList = new List<Edge>() { f, s, t };
             }
             else
             {
-                if (NotZeroLength(f.Length, s.Length, t.Length))
-                    throw new ArgumentException("Одна из сторон равна 0");
+                if (!UpperZeroLength(f.Length, s.Length, t.Length))
+                    throw new ArgumentException("Одна или несколько из сторон меньше или равны 0.0");
                 throw new ArgumentException("Сумма сторон треугольника не удовлетворяет основному правилу (сумма любых двух сторон больше третьей)");
             }
         }
@@ -32,17 +32,18 @@ namespace SimpleGeometryLib.Models
             Edge first = new Edge(f, s);
             Edge second = new Edge(s, t);
             Edge third = new Edge(t, f);
-            if (NotZeroLength(first.Length, second.Length, third.Length) &&
-                IsSideSmaller(first.Length, second.Length, third.Length) &&
-                IsSideSmaller(first.Length, second.Length, third.Length) &&
-                IsSideSmaller(first.Length, second.Length, third.Length)
-                )
+
+            if (UpperZeroLength(first.Length, second.Length, third.Length) &&
+                IsSideSmaller(first.Length, second.Length, third.Length) &&            
+                IsSideSmaller(third.Length, first.Length, second.Length) &&
+                IsSideSmaller(second.Length, third.Length, first.Length)
+            )
             {
                 _edgesList = new List<Edge>() { first, second, third };
             }
             else
             {
-                if (NotZeroLength(first.Length, second.Length, third.Length))
+                if (!UpperZeroLength(first.Length, second.Length, third.Length))
                     throw new ArgumentException("Одна из сторон равна 0");
                 throw new ArgumentException("Сумма сторон треугольника не удовлетворяет основному правилу (сумма любых двух сторон больше третьей)");
             }

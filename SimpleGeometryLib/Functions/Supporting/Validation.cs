@@ -14,9 +14,9 @@
         /// <summary>
         /// Ни одно из значений не должно быть 0
         /// </summary>
-        public static bool NotZeroLength(double l1, double l2, double l3)
+        public static bool UpperZeroLength(double l1, double l2, double l3)
         {
-            return !l1.Equals(0.0) && !l2.Equals(0.0) && !l3.Equals(0.0);
+            return l1 > 0.0 && l2 > 0.0 && l3 > 0.0;
         }
     }
 }
