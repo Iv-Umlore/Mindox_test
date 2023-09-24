@@ -9,7 +9,7 @@ namespace SimpleGeometryLib.Functions.Supporting
         /// </summary>
         public static double GetDistance(Point f, Point s)
         {
-            return Math.Sqrt(f.X * s.X + f.Y * s.Y);
+            return Math.Sqrt(Math.Pow(f.X - s.X, 2) + Math.Pow(f.Y - s.Y, 2));
         }
 
     }

@@ -20,4 +20,12 @@
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Tests\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleGeometryLib\SimpleGeometryLib.csproj" />
+  </ItemGroup>
+
 </Project>
