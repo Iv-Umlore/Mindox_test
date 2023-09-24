@@ -1,4 +1,4 @@
-﻿using SimpleGeometryLib.Functions.HelpFunc;
+﻿using SimpleGeometryLib.Functions.Supporting;
 
 namespace SimpleGeometryLib.Models.Base
 {
@@ -57,5 +57,32 @@ namespace SimpleGeometryLib.Models.Base
             FPoint = first;
             SPoint = second;
         }
+
+        public bool EqualsLength(object? obj)
+        {
+            // Равенство ссылок
+            if (base.Equals(obj))
+                return true;
+
+            // Равенство значений
+            if (obj != null && obj is Edge)
+                return this.Length == ((Edge)obj).Length;
+
+            else 
+                return false;
+        }
+
+        public static bool operator <(Edge first, Edge second)
+            => first.Length < second.Length;
+
+        public static bool operator <=(Edge first, Edge second)
+            => first.Length < second.Length || first.EqualsLength(second);
+
+        public static bool operator >(Edge first, Edge second)
+            => first.Length > second.Length;
+
+        public static bool operator >=(Edge first, Edge second)
+            => first.Length > second.Length || first.EqualsLength(second);
     }
+        
 }
