@@ -2,8 +2,6 @@
 {
     public class Ellipse : Figure
     {
-        protected Point Center { get; set; }
-
         protected double Radius { get; set; }
 
         protected double SecondRadius { get; set; }
@@ -20,14 +18,13 @@
         /// <param name="radius"> Известный радиус </param>
         public Ellipse(double compression, double radius)
         {
-            Center = new Point() { X = 0, Y = 0 };
-
             // Очевидно что данные строки должны быть вынесены в константы, но в рамках тестового решил не делать
             if (compression <= 0.0 ) 
                 throw new ArgumentException("Коэффициент сжатия должен быть положительным");
             if (radius < 0.0) 
                 throw new ArgumentException("Радиус должен быть не отрицательным");
 
+            // Слишком поздно подумал, что проще было просто через 2 радиуса задать
             CompressionCoefficient = compression;
             Radius = radius;
             SecondRadius = Radius / CompressionCoefficient;

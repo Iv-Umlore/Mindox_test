@@ -12,7 +12,7 @@
         }
 
         /// <summary>
-        /// Ни одно из значений не должно быть 0
+        /// Ни одно из значений не должно быть 0 или меньше
         /// </summary>
         public static bool UpperZeroLength(double l1, double l2, double l3)
         {

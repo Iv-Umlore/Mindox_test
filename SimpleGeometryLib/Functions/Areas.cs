@@ -1,18 +1,19 @@
 ﻿using SimpleGeometryLib.Factory;
 using SimpleGeometryLib.Functions.Supporting;
-using SimpleGeometryLib.Models;
 using SimpleGeometryLib.Models.Base;
 
 namespace SimpleGeometryLib.Functions
 {
     public static class Areas
     {
+        #region Мы знаем тип фигуры
+
         /// <summary>
         /// Получить площать треугольника по координатам вершины
         /// </summary>
         public static double GetTriangleArea(Point first, Point second, Point third)
         {
-            var triangle = new Triangle(first, second, third);
+            var triangle = PoligonFactory.CreateTriangle_ByPoints(first, second, third);
 
             return triangle.GetArea();
         }
@@ -22,7 +23,7 @@ namespace SimpleGeometryLib.Functions
         /// </summary>
         public static double GetTriangleArea(Edge first, Edge second, Edge third)
         {
-            var triangle = new Triangle(first, second, third);
+            var triangle = PoligonFactory.CreateTriangle_ByEdge(first, second, third);
 
             return triangle.GetArea();
         }
@@ -41,7 +42,7 @@ namespace SimpleGeometryLib.Functions
         /// </summary>
         public static double GetCircleArea(double Radius)
         {
-            var circle = new Circle(Radius);
+            var circle = CircleFactory.CreateCircle(Radius);
 
             return circle.GetArea();
         }
@@ -51,7 +52,7 @@ namespace SimpleGeometryLib.Functions
         /// </summary>
         public static double GetEllipseArea(double coeff, double Radius)
         {
-            var ellipse = new Ellipse(coeff, Radius);
+            var ellipse = CircleFactory.CreateEllipse_ByRadiusAndCoeff(coeff, Radius);
 
             return ellipse.GetArea();
         }
@@ -65,6 +66,10 @@ namespace SimpleGeometryLib.Functions
 
             return ellipse.GetArea();
         }
+
+        #endregion
+
+        #region Мы не знаем тип фигуры
 
         /// <summary>
         /// В зависимости от числа параметров возвращает площадь полученной фигуры 1 - круг(радиус), 2 - эллипс (2 радиуса), 3 - стороны треугольника, 4 и более - многоугольник (необходимо задавать параметры змейкой - разбиение многоугольника на треугольники проводит сам пользователь)
@@ -92,8 +97,6 @@ namespace SimpleGeometryLib.Functions
                         throw new ArgumentException("Число длинн ребер для многоугольника должно быть кратно 3, при использовании метода GetUniversalArea_ByLength. Советую использовать метод GetUniversalArea_ByPoints");
                     return PoligonFactory.CreatePoligon_ByEdgesLength(values).GetArea();
             }
-
-            return 0.0;
         }
 
         /// <summary>
@@ -129,8 +132,8 @@ namespace SimpleGeometryLib.Functions
                 default:
                     return PoligonFactory.CreatePoligon_ByPoints(values).GetArea();
             }
-
-            return 0.0;
         }
+
+        #endregion
     }
 }

@@ -69,5 +69,7 @@ namespace MindBoxUnitTest.Tests
 
             Assert.AreEqual(circle.GetArea(), second.GetArea());
         }
+
+        // корректность сложных фабрик проверяется уже в статических методах
     }
 }

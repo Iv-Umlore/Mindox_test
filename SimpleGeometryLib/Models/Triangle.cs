@@ -5,7 +5,6 @@ namespace SimpleGeometryLib.Models
 {
     public class Triangle : Figure
     {
-        protected List<Point> _pointList = null;
         protected List<Edge> _edgesList = null;
 
         public Triangle(Edge f, Edge s, Edge t) {
@@ -86,8 +85,8 @@ namespace SimpleGeometryLib.Models
             double halfPerimeter = _edgesList.Sum(it => it.Length) / 2;
             double area = Math.Sqrt(
                 halfPerimeter *
-                (halfPerimeter - _edgesList[0].Length)*
-                (halfPerimeter - _edgesList[1].Length)*
+                (halfPerimeter - _edgesList[0].Length) *
+                (halfPerimeter - _edgesList[1].Length) *
                 (halfPerimeter - _edgesList[2].Length)
             );
 
