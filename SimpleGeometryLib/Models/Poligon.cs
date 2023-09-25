@@ -11,6 +11,8 @@ namespace SimpleGeometryLib.Models
     {
         private List<Triangle> Triangles { get; set; }
 
+        private Point[] Points { get; set; }
+
         /// <summary>
         /// Задача многоугольника по координатам его вершины в строгой последовательности
         /// </summary>
@@ -18,24 +20,21 @@ namespace SimpleGeometryLib.Models
             if (points.Length < 3)
                 throw new Exception("Слишком мало точек для построения фигуры");
 
-            Point startPoint = points[0];
-            Point secondHelpPoint = points[1];
-
-            Triangles = new List<Triangle>();
-
-            for (int i = 2; i < points.Length; i++)
-            {
-                Point tmpPoint = points[i];
-                Triangles.Add(new Triangle(
-                        startPoint, secondHelpPoint, tmpPoint ));
-
-                secondHelpPoint = tmpPoint;
-            }
+            Points = points;
         }
 
+        /// <summary>
+        /// Задание многоугольника через длины сторон его внутренних треугольников
+        /// </summary>
         [Obsolete("Метод не является достоверным. Формирование итоговых треугольников ложится на разработчика")]
         public Poligon(double[] lengths)
         {
+            if (lengths.Length < 3)
+                throw new ArgumentException("Слишком мало параметров для задния многоугольника");
+
+            if (lengths.Length % 3 != 0)
+                throw new ArgumentException("Число длин сторон треугольников не кратно 3");
+
             Triangles = new List<Triangle>();
             for (int i = 0; i < lengths.Length; i += 3)
             {
@@ -49,13 +48,34 @@ namespace SimpleGeometryLib.Models
 
         public override double GetArea()
         {
-            double area = 0.0;
-            foreach (var triangle in Triangles)
+            // Использую метод Гауса
+            if (Points != null)
             {
-                area += triangle.GetArea();
+                double sum = 0.0;
+                double tmpSum = 0.0;
+
+                //  Модуль(сумма всех Xi*Yi+1 + Xn*Y1 - все Xi+1 * Yi - X1 * Yn) * 1/2
+
+                for (int i = 0; i < Points.Length - 1; i++)
+                {
+                    tmpSum += Points[i].X * Points[i + 1].Y;
+                    tmpSum -= Points[i + 1].X * Points[i].Y;
+                }
+                sum = Math.Abs( tmpSum + Points[Points.Length - 1].X * Points[0].Y - Points[0].X * Points[Points.Length - 1].Y ) / 2;
+                return sum;
             }
 
-            return area;
+            if (Triangles != null) {
+                double area = 0.0;
+                foreach (var triangle in Triangles)
+                {
+                    area += triangle.GetArea();
+                }
+
+                return area;
+            }
+
+            throw new Exception("Достигнут недостижимый блок кода");            
         }
     }
 }

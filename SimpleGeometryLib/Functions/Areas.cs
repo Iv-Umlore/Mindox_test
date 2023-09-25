@@ -59,7 +59,7 @@ namespace SimpleGeometryLib.Functions
         /// <summary>
         /// Получить площать эллипса по двум радиусам
         /// </summary>
-        public static double GetEllipseArea_ByTwhoRadius(double Radius1, double Radius2)
+        public static double GetEllipseArea_ByTwoRadius(double Radius1, double Radius2)
         {
             var ellipse = CircleFactory.CreateEllipse_ByTwoRadius(Radius1, Radius2);
 
@@ -74,7 +74,7 @@ namespace SimpleGeometryLib.Functions
         public static double GetUniversalArea_ByLength(params double[] values)
         {
             if (values == null || values.Length <= 0)
-                throw new Exception("Необходимо указать хотя бы одно значение");
+                throw new ArgumentException("Необходимо указать хотя бы одно значение");
 
             switch(values.Length)
             {
@@ -100,11 +100,10 @@ namespace SimpleGeometryLib.Functions
         /// В зависимости от числа параметров возвращает площадь полученной фигуры 1 - круг((0;0) - Point - радиус), 2 - эллипс (2 радиуса), 3 - стороны треугольника, 4 и более - многоугольник
         /// </summary>
         /// <returns> Прощадь фигуры </returns>
-        [Obsolete("Метод не является достоверным")]
         public static double GetUniversalArea(params Point[] values)
         {
             if (values == null || values.Length <= 0)
-                throw new Exception("Необходимо указать хотя бы одно значение");
+                throw new ArgumentException("Необходимо указать хотя бы одно значение");
 
             switch (values.Length)
             {
